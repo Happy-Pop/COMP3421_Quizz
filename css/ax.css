@@ -11,7 +11,7 @@ body {
   width: 100%;
 }
 body {
-  background-image: url(../images/login-bg.jpg);
+  background-image: url(../media/images/login_background1.jpg);
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -93,3 +93,4 @@ body {
 .ax-col-14 {
   width: calc((100%/24)*14);
 }
+

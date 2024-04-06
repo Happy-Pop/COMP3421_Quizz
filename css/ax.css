@@ -1,0 +1,95 @@
+@charset "utf-8";
+.ax-align-origin,
+.ax-align-center-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+body {
+  background-image: url(../images/login-bg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.login {
+  width: 80%;
+  background-color: #fff;
+}
+.login .cover {
+  background-image: url(../images/login-left.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.login .core {
+  padding-left: 28px;
+}
+.footer {
+  color: rgba(255, 255, 255, 0.5);
+  width: 100%;
+  text-align: center;
+  padding: 1.4rem 0;
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+.footer a {
+  color: rgba(255, 255, 255, 0.5);
+}
+@media screen and (max-width: 100%) {
+  body.ax-align-origin {
+    background-image: none;
+    display: block;
+  }
+  .login {
+    width: 100%;
+    box-shadow: none;
+    border-radius: 0;
+  }
+  .login .cover {
+    height: 20rem;
+    border-radius: 0;
+  }
+  .login .core {
+    padding-left: 0;
+  }
+  .login form {
+    margin: 0;
+  }
+  .footer {
+    position: inherit;
+    color: #666666;
+  }
+  .footer a {
+    color: #666666;
+  }
+}
+.ax-shadow-cloud {
+  box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.1);
+}
+.ax-radius-md,
+.ax-avatar.ax-radius-md,
+.ax-sign.ax-radius-md {
+  border-radius: calc(0.3rem*4);
+}
+.ax-row {
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  width: 100%;
+  zoom: 1;
+}
+.ax-col {
+  display: block;
+  flex: auto;
+  width: 0;
+  position: relative;
+}
+.ax-col-14 {
+  width: calc((100%/24)*14);
+}

@@ -9,18 +9,6 @@ body {
   width: 100%;
 }
 body {
-  background-image: url(../images/login-bg.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.login {
-  width: 1000px;
-  background-color: #fff;
-}
-.login .cover {
-  background-image: url(../images/login-left.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 .login .core {
   padding-left: 28px;
@@ -40,8 +28,6 @@ body {
 }
 @media screen and (max-width: 900px) {
   body.ax-align-origin {
-    background-image: none;
-    display: block;
   }
   .login {
     width: 100%;

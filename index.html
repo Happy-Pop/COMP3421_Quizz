@@ -10,11 +10,12 @@
     <meta content="telephone=no" name="format-detection">
     <title>Quiz</title>
     <link href="css/ax.css" rel="stylesheet" type="text/css">
+    <link href="css/main.css" rel="stylesheet" type="text/css">
     <link href="dist/css/ax-response.css" rel="stylesheet" type="text/css">
     <link href="bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 </head>
 <body class="ax-align-origin" style="background-size:100% 100%; background-image: url(./media/images/login_background1.jpg);"><!--the whole page-->
-    <div class="login ax-radius-md" style="background-image: none;background-color: white"  >
+    <div class="login ax-radius-md" style="background-image: none;background-color: white">
         <div class="ax-row ax-radius-md" style=" padding:10px; background-image: none" ><!--the smaller in the center-->
             <div style="width: 50%;"><!--left image -->
                 <img src="./media/images/login_background2.png" alt="logo" style="width:100%">
@@ -22,16 +23,17 @@
                 <div style="width: 50%"><!--right part -->
                     <div>
                         <ul style="width: 100%; list-style-type: none;">
-                            <li style="float: left; width:30%; text-align:left;"><button type="button" class="btn" >login</button></li>
-                            <li style="float: left; width:50%; text-align:left"><button type="button" class="btn" >Register new users</button></li>
+                            <li style="float: left;  text-align:left;"><button type="button" id="login_button" class="btn" style="background-color:#44a9ed;" onclick="return login_form()" >login</button></li>
+                            <li style="float: left;  text-align:left"><button type="button" id="sign_up_button" class="btn" onclick="return sign_up_form()">Sign Up</button></li>
                         </ul>
+                        <br>
                         <ul style="list-style-type: none;" id="loginbox">
                             <li>
-                                <form>
+                                <form id="login_form" style="display: block">
                                     <div class="form-group">
                                         <label for="InputEmail1"></label>
-                                        <input type="email" class="form-control" id="InputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                                        <small id="emailHelp">We'll never share your email with anyone else.</small>
+                                        <input type="email" class="form-control" id="InputEmail1" aria-describedby="emailHelp" placeholder="Enter email" onkeyup="sign_up_check(this.value,'emailHelp')">
+                                        <small id="emailHelp"></small>
                                     </div>
                                     <div class="form-group">
                                         <label for="InputPassword1"></label>
@@ -49,15 +51,40 @@
                                             class="btn btn-primary"
                                             onclick="return check_login_info()">
                                             Submit</button>
-                                  </form>
+                                </form>
+                                
+                                <form id="sign_up_form" style="display:none">
+                                    <div class="form-group">
+                                        <label for="sign_up_InputEmail1"></label>
+                                        <input type="email" class="form-control" id="sign_up_InputEmail1" aria-describedby="emailHelp" placeholder="Enter email"  onkeyup="sign_up_check(this.value,'sign_up_emailHelp'); email_registered_repeat_check(this.value)">
+                                        <small id="sign_up_emailHelp"></small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="sign_up_InputPassword1"></label>
+                                        <input type="password" class="form-control" id="sign_up_InputPassword1" placeholder="Password">
+                                        <small id="sign_up_Password_Help"> </small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="sign_up_confirmPassword1"></label>
+                                        <input type="password" class="form-control" id="sign_up_confirmPassword1" placeholder="Confirm Password" onkeyup="check_password_same()">
+                                        <small id="sign_up_Confirm_Password_Help"> </small>
+                                    </div>
+                                    <div>
+                                        <br>
+                                    </div>
+                                    <button type="submit"
+                                            class="btn btn-primary"
+                                            onclick="return check_login_info()">
+                                            Submit</button>
+                                </form>
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 <script>
+    var valid_sign_up= false;
     function check_login_info() {
         var email=document.getElementById("InputEmail1").value;
         var password=document.getElementById("InputPassword1").value;
@@ -71,7 +98,6 @@
             document.getElementById("Password_Help").style.color="rgba(255,0,0,0.85)";
             return false;
         }
-
         else {
             var xmlhttp = new XMLHttpRequest();
             xmlhttp.onreadystatechange = function(){
@@ -94,6 +120,60 @@
             return false;
         }
     }
+    function sign_up_check(email_temp,id){
+        var reg = /^[A-Za-z0-9]+([_\.][A-Za-z0-9]+)*@([A-Za-z0-9\-]+\.)+[A-Za-z]{2,6}$/;
+        if(!reg.test(email_temp)){
+            document.getElementById(id).innerHTML="Please enter correct E-mail format like example@quiz.com";
+            document.getElementById(id).style.color="#ff0000";
+        }
+        else
+            document.getElementById(id).innerHTML="";
+    }
+    function email_registered_repeat_check(email_temp){
+        var xmlhttp2= new XMLHttpRequest();
+        xmlhttp2.onreadystatechange=function(){
+            if (this.readyState == 4 && this.status == 200) {
+                if(this.responseText==="False"){
+                    document.getElementById("sign_up_emailHelp").innerHTML="This e-mail has been registered. Please use another e-mail";
+                    document.getElementById("sign_up_emailHelp").style.color="#ff0000";
+                    return false;
+                }
+            }
+        }
+        xmlhttp2.open("GET", "./phpfile/sign_up_check.php?email=" + email_temp, true);
+        xmlhttp2.send();
+    }
+    function submit_register_info(){
+        if(valid_sign_up){
+            var xmlhttp3=new XMLHttpRequest();
+            xmlhttp3.open("GET", "./phpfile/sign_up_check.php?email=" + email_temp+"&password="+password, true);
+            xmlhttp.send();
+        }
+    }
+    function login_form(){
+        document.getElementById("login_form").style.display="block";
+        document.getElementById("sign_up_form").style.display="none";
+        document.getElementById("login_button").style.cssText=" background-color:#44a9ed; transition: all 0.3s;";
+        document.getElementById("sign_up_button").style.cssText=" background-color:none; transition: all 0.3s;";
+        return true;
+    }
+    function sign_up_form(){
+        document.getElementById("login_form").style.display="none";
+        document.getElementById("sign_up_form").style.display="block";
+        document.getElementById("sign_up_button").style.cssText=" background-color:#44a9ed; transition: all 0.3s;";
+        document.getElementById("login_button").style.cssText=" background-color:none; transition: all 0.3s;";
+        return true;
+    }
+    function check_password_same(){
+        if(document.getElementById("sign_up_InputPassword1").value!==document.getElementById("sign_up_confirmPassword1").value){
+            document.getElementById("sign_up_Confirm_Password_Help").style.color="#ff0000";
+            document.getElementById("sign_up_Confirm_Password_Help").innerHTML="The password must be the same";
+        }
+        else{
+            document.getElementById("sign_up_Confirm_Password_Help").innerHTML="";
+        }
+    }
+
 </script>
 
 </body>

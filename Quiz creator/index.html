@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Management</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    
+    <h1>Create a new quiz!</h1>
+    <p>Let's start now!</p>
+  </header>
+
+    <div id="choiceContainer">
+
+      <div class="optionContainer" onclick="toggleContent('add')">
+          <img src="picture.jpg" alt="Add Quiz" class="optionImage">
+          <div class="textOverlay">Add Quiz</div>
+      </div>
+      <div class="optionContainer" onclick="toggleContent('edit')">
+          <img src="pircture_2.jpg" alt="Edit Quiz" class="optionImage">
+          <div class="textOverlay">Edit Quiz</div>
+      </div>
+
+    </div>
+
+    <div id="quizList">
+      <h1>The Latest Quizzes</br></h1>
+      
+    </div>
+
+
+
+    <div id="addQuizContainer" class="formContainer" style="display: none;">
+        <div id="addQuiz">
+            <h2>Add New Quiz</h2>
+            <form id="addQuizForm">
+                <label for="addQuizTitle">Title:</label>
+                <input type="text" id="addQuizTitle" name="quizTitle" required>
+                <button onclick="toggleContent('')">Back</button>
+                
+                <div id="questionTypeSelection">
+                    <label for="questionType">Select Question Type:</label>
+                    <select id="questionType" name="questionType" onchange="toggleOptionCount(this.value)">
+                        <option value="fillInTheBlanks">Fill in the Blanks</option>
+                        <option value="shortAnswer">Short Answer</option>
+                        <option value="mcq">Multiple Choice</option>
+                    </select>
+                    
+                    <label for="optionCount" id="optionCountLabel" style="display:none;">Number of Options:</label>
+                    <input type="number" id="optionCount" name="optionCount" min="2" max="5" style="display:none;">
+                </div>
+                
+                <button type="button" onclick="prepareQuestion()">Add Question</button>
+                
+                <div id="questionsContainer">
+                    
+                </div>
+
+                <input type="submit" value="Save New Quiz" style="margin-top: 10px;">
+            </form>
+        </div>
+        
+    </div>
+
+    <div id="editQuizContainer" class="contentContainer" style="display: none;">
+        <h2>Edit Quiz</h2>
+        
+        <button onclick="toggleContent('')">Back</button>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

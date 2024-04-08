@@ -11,18 +11,11 @@ body {
   width: 100%;
 }
 body {
-  background-image: url(../images/login-bg.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 .login {
   width: 80%;
-  background-color: #fff;
 }
 .login .cover {
-  background-image: url(../images/login-left.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 .login .core {
   padding-left: 28px;
@@ -42,7 +35,6 @@ body {
 }
 @media screen and (max-width: 100%) {
   body.ax-align-origin {
-    background-image: none;
     display: block;
   }
   .login {
@@ -82,7 +74,6 @@ body {
   flex-wrap: nowrap;
   flex-direction: row;
   width: 100%;
-  zoom: 1;
 }
 .ax-col {
   display: block;
@@ -93,3 +84,4 @@ body {
 .ax-col-14 {
   width: calc((100%/24)*14);
 }
+

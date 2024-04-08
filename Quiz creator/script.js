@@ -115,36 +115,6 @@ document.getElementById('editQuizForm').addEventListener('submit', function(e) {
     alert('Quiz changes saved! (simulated)');
 });
 
-
-let quizzes = [];
-
-
-function showForm(whichForm) {
-    document.getElementById('header').style.display = 'none';
-    document.getElementById('quizList').style.display = 'none';
-    document.getElementById(`${whichForm}QuizContainer`).style.display = 'block';
-}
-
-
-function addNewQuiz(title) {
-    quizzes.push(title); 
-    updateQuizList(); 
-}
-
-function updateQuizList() {
-    const listElement = document.getElementById('quizList');
-    listElement.innerHTML = ''; 
-
-    quizzes.forEach((quiz, index) => {
-        const listItem = document.createElement('div');
-        listItem.textContent = `Newest Quiz ${index + 1}: ${quiz}`;
-        listElement.appendChild(listItem);
-    });
-}
-
-updateQuizList();
-
-
 function deleteQuestion(deleteButton) {
     
     const questionDiv = deleteButton.parentNode.parentNode;

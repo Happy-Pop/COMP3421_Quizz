@@ -1,3 +1,5 @@
+let currentStudentIndex = 0;
+
 document.addEventListener('DOMContentLoaded', function() {
     const quizNumber = new URLSearchParams(window.location.search).get('quizNumber');
     fetchSubmissions(quizNumber).then(data => {
@@ -7,40 +9,42 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-let mcqtotal = 0;
+let mcqTotal = 0;
+let totalGrade = 0;  
 
-function displayQuestion(index) {
+
+function displayStudent(studentIndex) {
+    const student = answers[studentIndex];
     const quizTitleElement = document.getElementById('quizTitle');
-    const studentInfoElement = document.getElementById('studentId');
-    const totallyscoreElement = document.getElementById('totalScore');
-    quizTitleElement.textContent = `Grading Quiz: ${answers[0].quizTitle}`;
-    studentInfoElement.textContent = `Student ID: ${answers[0].studentId}`;
-    totallyscoreElement.textContent = `Total Score: ${answers[0].totalScore}`;
-    
-
+    const studentIdElement = document.getElementById('studentId');
+    const totalScoreElement = document.getElementById('totalScore');
     const questionsContainer = document.getElementById('questionsContainer');
+
+    quizTitleElement.textContent = `Grading Quiz: ${student.quizTitle}`;
+    studentIdElement.textContent = `Student ID: ${student.studentId}`;
+    totalScoreElement.textContent = `Total Score: ${student.totalScore}`;
+
     questionsContainer.innerHTML = '';
 
-    answers.forEach((answer, i) => {
-        if(i != 0){
-                const questionDiv = document.createElement('div');
+    student.submission.forEach(submission => {
+        const questionDiv = document.createElement('div');
         questionDiv.classList.add('question');
 
         let contentHTML = `
-            <h3>Question ${answer.questionIndex}: ${answer.question}</h3>
-            <p>Question Score: ${answer.score}</p>
+            <h3>Question ${submission.questionIndex}: ${submission.question}</h3>
+            <p>Question Score: ${submission.score}</p>
         `;
 
-        if (answer.type === 'mcq') {
-            let optionsHTML = answer.options.map((option, idx) => {
+        if (submission.type === 'mcq') {
+            let optionsHTML = submission.options.map((option, idx) => {
                 let optionStyle = '';
                 let additionalText = '';
 
-                if (answer.options[idx] === answer.studentAnswer) {
-                    additionalText = ' - Your Answer';
+                if (submission.options[idx] === submission.studentAnswer) {
+                    additionalText = ' - Chosen Answer';
                     optionStyle = 'color: red;'; 
                 }
-                if (idx === answer.correctAnswer) {
+                if (idx === submission.correctAnswer) {
                     additionalText = ' - Correct Answer';
                     optionStyle = 'color: green;';
                 }
@@ -48,41 +52,60 @@ function displayQuestion(index) {
             }).join('');
 
             contentHTML += `<ul>${optionsHTML}</ul>`;
-            scoreReceived = answer.studentAnswer === answer.answer ? answer.score : '0';
+            let scoreReceived = submission.studentAnswer === submission.answer ? submission.score : '0';
             contentHTML += `<p>Grade: ${scoreReceived}</p>`;
-            updateTeacherScore(answer.questionIndex, scoreReceived)
+            updateTeacherScore(studentIndex, submission.questionIndex, scoreReceived);
 
-            mcqtotal += parseInt(scoreReceived);
-
-        }else {
+        } else {
             contentHTML += `
-                <p>Student's Answer: ${answer.studentAnswer || 'No answer provided'}</p>
-                <label for="grade${answer.questionIndex}">Teacher's Grade:</label>
-                <input type="number" id="grade${answer.questionIndex}" placeholder="Enter grade" value="0" onchange="updateTeacherScore(${answer.questionIndex}, this.value)">
-
+                <p>Student's Answer: ${submission.studentAnswer || 'No answer provided'}</p>
+                <label for="grade${submission.questionIndex}">Teacher's Grade:</label>
+                <input type="number" id="grade${submission.questionIndex}" placeholder="Enter grade" value="${submission.teacherScore || 0}" onchange="updateTeacherScore(${studentIndex}, ${submission.questionIndex}, this.value)">
             `;
-            
         }
 
         questionDiv.innerHTML = contentHTML;
         questionsContainer.appendChild(questionDiv);
-        
-        }
-        
     });
+
+    updateTotalGrade();
+
+}
+        
+
+function updateTotalGrade() {
+    totalGrade = 0;
+    answers[currentStudentIndex].submission.forEach(submission => {
+        totalGrade += submission.teacherScore || 0; 
+    });
+    document.getElementById('totalGradeValue').textContent = totalGrade;
 }
 
+function updateTeacherScore(studentIndex, questionIndex, newScore) {
+    const submission = answers[studentIndex].submission.find(submission => submission.questionIndex === questionIndex);
+    if (submission) {
+        const maxScore = submission.score; 
+        if (parseInt(newScore) > maxScore) {
+            alert(`Teacher's score cannot exceed ${maxScore} for question ${submission.questionIndex}.`);
+            return; 
+        }
+        submission.teacherScore = parseInt(newScore);
+        updateTotalGrade();
+    }
+}
+            
+
 document.getElementById('prevBtn').addEventListener('click', function() {
-    if (currentQuestionIndex > 1) { 
-        currentQuestionIndex--;
-        displayQuestion(currentQuestionIndex);
+    if (currentStudentIndex > 0) { 
+        currentStudentIndex--;
+        displayStudent(currentStudentIndex);
     }
 });
 
 document.getElementById('nextBtn').addEventListener('click', function() {
-    if (currentQuestionIndex < answers.length - 1) {
-        currentQuestionIndex++;
-        displayQuestion(currentQuestionIndex);
+    if (currentStudentIndex < answers.length - 1) {
+        currentStudentIndex++;
+        displayStudent(currentStudentIndex);
     }
 });
 
@@ -91,42 +114,11 @@ document.getElementById('backBtn').addEventListener('click', function() {
 });
 
 document.getElementById('submitBtn').addEventListener('click', function() {
-    let totalScore = mcqtotal;
-    const comment = document.getElementById(`comment`).value;
-    answers.forEach(answer => {
-        if (answer.type !== 'mcq') {
-            totalScore += answer.teacherScore || 0; 
-        }
-    })
-    document.getElementById('totalScoreValue').textContent = totalScore;
+    alert('Total Grade: ' + totalGrade);
 });
 
-document.getElementById('submitBtn').addEventListener('click', function() {
-    let totalScore = mcqtotal;
-    answers.forEach(answer => {
-        if (answer.type !== 'mcq') {
-            totalScore += answer.teacherScore || 0; 
-        }
-    })
-    document.getElementById('totalScoreValue').textContent = totalScore;
-    
-});
+displayStudent(currentStudentIndex);
 
-function updateTeacherScore(questionIndex, newScore) {
-    const answer = answers.find(answer => answer.questionIndex === questionIndex);
-    if (answer) {
-        
-        const maxScore = answer.score; 
-        if (parseInt(newScore) > maxScore) {
-            alert(`Teacher's score cannot exceed ${maxScore} for question ${answer.questionIndex}.`);
-            return; 
-        }
-        answer.teacherScore = parseInt(newScore);
-    }
-}
-
-
-displayQuestion(currentQuestionIndex);
 
 function submitGrades() {
     const grades = [];

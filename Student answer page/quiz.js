@@ -59,7 +59,8 @@ function collectAnswers(quizTitle, quizNumber, studentId, score) {
         quizTitle: quizTitle,
         quizNumber: quizNumber,
         studentId: studentId,
-        Score: score
+        Score: score,
+        Submission:{}
     });
 
     let questionIndex = 1;
@@ -95,7 +96,7 @@ function collectAnswers(quizTitle, quizNumber, studentId, score) {
             answerData.studentanswer = ''; 
         }
 
-        answers.push(answerData);
+        Submission.push(answerData);
         questionIndex++;
     });
 

@@ -1,35 +1,33 @@
-const answers = [
+{
+  "quizTitle": "Sample Quiz",
+  "quizNumber": 1,
+  "studentId": "123456",
+  "score": 90,
+  "Submission": [
     {
-        quizTitle: "Sample Quiz", // 测验标题
-        quizNumber: 1, // 测验编号
-        studentId: "123456", // 学生ID
-        Score: 90 // 总分
+      "questionIndex": 1,
+      "type": "mcq",
+      "question": "What is the capital of France?",
+      "score": 10,
+      "options": ["London", "Paris", "Berlin", "Madrid"],
+      "answer": "Paris",
+      "studentAnswer": "Paris"
     },
     {
-        questionIndex: 1, // 问题索引，从1开始
-        type: "mcq", // 问题类型
-        question: "What is the capital of France?", // 问题内容
-        score: 10, // 问题分值
-        options: ["London", "Paris", "Berlin", "Madrid"], // 选项列表
-        answer: "Paris", // 正确答案
-        studentanswer: "Paris" // 学生答案
+      "questionIndex": 2,
+      "type": "fillInTheBlanks",
+      "question": "The capital of Italy is ___",
+      "score": 5,
+      "answer": "Rome",
+      "studentAnswer": "Rome"
     },
     {
-        questionIndex: 2, // 问题索引，从1开始
-        type: "fillInTheBlanks", // 问题类型
-        question: "The capital of Italy is ___", // 问题内容
-        score: 5, // 问题分值
-        options: [], // 填空题没有选项
-        answer: "Rome", // 正确答案
-        studentanswer: "Rome" // 学生答案
-    },
-    {
-        questionIndex: 3, // 问题索引，从1开始
-        type: "shortAnswer", // 问题类型
-        question: "Name one of the Great Lakes in the United States.", // 问题内容
-        score: 7, // 问题分值
-        options: [], // 简答题没有选项
-        answer: "", // 正确答案
-        studentanswer: "Lake Superior" // 学生答案
-    },
-];
+      "questionIndex": 3,
+      "type": "shortAnswer",
+      "question": "Name one of the Great Lakes in the United States.",
+      "score": 7,
+      "answer": "",
+      "studentAnswer": "Lake Superior"
+    }
+  ]
+}

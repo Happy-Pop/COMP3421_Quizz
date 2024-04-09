@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz Access</title>
+</head>
+<body>
+    <h2>Enter Quiz Details</h2>
+    <form id="quizAccessForm">
+        <input type="text" id="quizNumber" placeholder="Quiz Number" required>
+        <button type="submit">Access Quiz</button>
+    </form>
+
+
+    <script>
+        document.getElementById('quizAccessForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const quizNumber = document.getElementById('quizNumber').value;
+            fetch('/api/getStudentDetails', {
+                method: 'GET',
+                headers: {
+                    'Authorization': 'Bearer YOUR_TOKEN_HERE', 
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to fetch student details');
+                }
+                return response.json();
+            })
+            .then(data => {
+                
+                const studentID = data.studentID; // STUDENT ID already in dataset
+
+                return fetch('/api/checkQuiz', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ quizNumber, studentID }),
+                });
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Quiz not found or access denied');
+                }
+                return response.json();
+            })
+            .then(data => {
+                
+                if (data.success) {
+                    window.location.href = `/index.html?quizId=${quizNumber}`; 
+                } else {
+                    alert('Quiz not found or access denied.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert(error.message);
+            });
+        })
+
+    </script>
+</body>
+</html>

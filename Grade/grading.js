@@ -10,11 +10,12 @@ document.addEventListener('DOMContentLoaded', function() {
 let mcqtotal = 0;
 
 function displayQuestion(index) {
-    const question = answers[index];
     const quizTitleElement = document.getElementById('quizTitle');
-    const studentInfoElement = document.getElementById('studentInfo');
-    quizTitleElement.textContent = `Grading Quiz: ${question.quizTitle}`;
-    studentInfoElement.textContent = `Student ID: ${question.studentId}`;
+    const studentInfoElement = document.getElementById('studentId');
+    const totallyscoreElement = document.getElementById('totalScore');
+    quizTitleElement.textContent = `Grading Quiz: ${answers[0].quizTitle}`;
+    studentInfoElement.textContent = `Student ID: ${answers[0].studentId}`;
+    totallyscoreElement.textContent = `Total Score: ${answers[0].totalScore}`;
     
 
     const questionsContainer = document.getElementById('questionsContainer');
@@ -114,6 +115,12 @@ document.getElementById('submitBtn').addEventListener('click', function() {
 function updateTeacherScore(questionIndex, newScore) {
     const answer = answers.find(answer => answer.questionIndex === questionIndex);
     if (answer) {
+        
+        const maxScore = answer.score; 
+        if (parseInt(newScore) > maxScore) {
+            alert(`Teacher's score cannot exceed ${maxScore} for question ${answer.questionIndex}.`);
+            return; 
+        }
         answer.teacherScore = parseInt(newScore);
     }
 }

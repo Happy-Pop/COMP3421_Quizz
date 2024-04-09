@@ -43,7 +43,7 @@ function addQuestion(questionType, optionCount) {
     let questionContent = '';
     switch (questionType) {
         case 'mcq':
-            questionContent = createMultipleChoiceQuestion(optionCount);
+            questionContent = createMultipleChoiceQuestion(optionCount, questionCount);
             break;
         case 'fillInTheBlanks':
             questionContent = createFillInTheBlankQuestion();
@@ -83,6 +83,7 @@ function addQuestion(questionType, optionCount) {
 function createMultipleChoiceQuestion(optionCount, questionCount) {
     
     let optionsHtml = '';
+    let questionHTML = '';
     for (let i = 1; i <= optionCount; i++) {
         optionsHtml += `
             <div class="option-container">
@@ -96,7 +97,7 @@ function createMultipleChoiceQuestion(optionCount, questionCount) {
                     </div>`;
 
     questionHTML = `<div class="question-content">
-                        <label for="question${questionCount}Text">Question ${questionCount}:</label>
+                        <label>Question ${questionCount}:</label>
                         <input type="text" id="question${questionCount}Text" name="question${questionCount}Text" class="question-text-input" required>
                         ${optionsHtml}
                         <div class="question-controls">
@@ -120,7 +121,7 @@ function createFillInTheBlankQuestion() {
 }
 
 function createShortAnswerQuestion() {
-    questionHTML += `<div class="question-content">
+    questionHTML = `<div class="question-content">
                         <label>Question ${questionCount}:</label><input type="text" required>
                         <div class="question-controls">
                             

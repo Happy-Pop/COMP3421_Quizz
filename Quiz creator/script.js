@@ -175,10 +175,7 @@ document.getElementById('addQuizForm').addEventListener('submit', function(e) {
 
 
 
-document.getElementById('editQuizForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    alert('Quiz changes saved! (simulated)');
-});
+
 
 function deleteQuestion(deleteButton) {
     const questionDiv = deleteButton.closest('.question');

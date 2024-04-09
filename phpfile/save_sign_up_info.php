@@ -5,7 +5,9 @@ $conn = mysqli_connect("localhost", "root", "", "quiz_info");
 if (!$conn) {
     die("Connect Error: " . mysqli_connect_error());
 }
-$sql = "Insert into user_info (user_email, user_password)
-VALUES ($email, $password)";
+$sql = "Insert into user_info (user_email, user_password) VALUES ($email, $password)";
 $result = mysqli_query($conn, $sql);
+if($result==true){
+    echo "Successful";
+}
 ?>

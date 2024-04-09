@@ -8,8 +8,9 @@ if (!$conn) {
 $sql = "select * from user_info where user_email='$email' and user_password	='$password'";
 $result = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result) == 1) {
-    echo "True";
+    $sql = "select user_identity from user_info where user_email='$email' and user_password	='$password'";
+    $result = mysqli_query($conn, $sql);
+    echo $result->fetch_assoc()["user_identity"];
 } else {
     echo "False";
 }
-?>

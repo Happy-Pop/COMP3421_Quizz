@@ -29,7 +29,6 @@
                         <br>
                         <ul style="list-style-type: none;" id="loginbox">
                             <li>
-                                <form id="login_form" style="display: block">
                                     <div class="form-group">
                                         <label for="InputEmail1"></label>
                                         <input type="email" class="form-control" id="InputEmail1" aria-describedby="emailHelp" placeholder="Enter email" onkeyup="sign_up_check(this.value,'emailHelp')">
@@ -107,17 +106,26 @@
                         document.getElementById("Password_Help").style.color="#ff0000";
                         return false;
                     }
-                    if(this.responseText==="True"){
+                    if(this.responseText==="Teacher"){
                         document.getElementById("Password_Help").innerHTML = "Email and Password is correct";
                         document.getElementById("Password_Help").style.color="#ff0000";
-                        return false;
+                        var form1 = document.createElement("form");
+                        var user_email= document.createElement("input");
+                        user_email.value=email;
+                        user_email.type="email";
+                        user_email.name="user_email";
+                        form1.method = "POST";
+                        form1.action = "./teacher_homepage/index.php";
+                        form1.appendChild(user_email);
+                        document.body.appendChild(form1);
+                        form1.submit();
+                        document.body.removeChild(form1);
                     }
                 }
                 return false;
             };
             xmlhttp.open("GET", "./phpfile/check_login_info.php?email=" + email+"&password="+password, true);
             xmlhttp.send();
-            return false;
         }
     }
     function sign_up_check(email_temp,id){

@@ -58,7 +58,7 @@ function addQuestion(questionType, optionCount) {
 
     let questionData = {
         type: questionType,
-        question: document.getElementById(`questionText${questionCount}`).value;, 
+        question: document.getElementById(`questionText${questionCount}`).value, 
         score: document.getElementById(`question${questionCount}Score`).value,
         options: [], 
         answer: "" 

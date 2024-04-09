@@ -51,15 +51,53 @@ document.getElementById('quizForm').addEventListener('submit', function(e) {
     .catch(error => console.error('Error:', error));
 });
 
-function collectAnswers() {
+
+
+function collectAnswers(quizTitle, quizNumber, studentId, score) {
     const answers = [];
+    answers.push({
+        quizTitle: quizTitle,
+        quizNumber: quizNumber,
+        studentId: studentId,
+        Score: score
+    });
+
+    let questionIndex = 1;
+
     document.querySelectorAll('.question').forEach((questionDiv, index) => {
+        let answerData = {
+            questionIndex: questionIndex,
+            type: document.getElementById('questionType').value,
+            question: document.getElementById(`questionText${index}`).value, 
+            score: document.getElementById(`question${index}Score`).value,
+            options: [], 
+            answer: ""
+        };
+
+        if (answerData.type === 'mcq') {
+            const optionCount = document.getElementById('optionCount').value;
+            for (let i = 1; i <= optionCount; i++) {
+                let optionID = `question${index}option${i}`;
+                let optionValue = document.getElementById(optionID).value;
+                if (optionValue) {
+                    answerData.options.push(optionValue);
+                }
+            }
+            let correctOptionID = `question${index}correct`;
+            answerData.answer = document.querySelector(`input[name="${correctOptionID}"]:checked`) ? 
+                                  document.querySelector(`input[name="${correctOptionID}"]:checked`).value : "";
+        } 
+
         const input = questionDiv.querySelector('input[type="radio"]:checked, input[type="text"], textarea');
         if (input) {
-            answers.push({ questionIndex: index, answer: input.value });
+            answerData.studentanswer = input.value;
         } else {
-            answers.push({ questionIndex: index, answer: '' }); 
+            answerData.studentanswer = ''; 
         }
+
+        answers.push(answerData);
+        questionIndex++;
     });
+
     return answers;
 }

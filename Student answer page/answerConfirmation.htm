@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Answer Confirmation</title>
+</head>
+<body>
+    <h1>Your Answers</h1>
+    <div id="answersContainer"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const answers = JSON.parse(sessionStorage.getItem('recentAnswers')) || [];
+            const container = document.getElementById('answersContainer');
+
+            if (answers.length > 0) {
+                answers.forEach((item) => {
+                    const elem = document.createElement('p');
+                    elem.textContent = `Question ${item.questionIndex}: ${item.answer}`;
+                    container.appendChild(elem);
+                });
+                
+                sessionStorage.removeItem('recentAnswers');
+            } else {
+                container.textContent = 'No answers found.';
+            }
+        });
+    </script>
+</body>
+</html>

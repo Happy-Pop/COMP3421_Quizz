@@ -1,0 +1,26 @@
+const quizData = {
+    title: "Sample Quiz", 
+    totalScore: 90, 
+    question: [ 
+        {
+            type: "mcq", // 问题类型：多项选择题
+            question: "What is the capital of France?", // 问题内容
+            score: 10, // 问题分值
+            options: ["London", "Paris", "Berlin", "Madrid"], // 选项列表
+            answer: "Paris" // 正确答案
+        },
+        {
+            type: "fillInTheBlanks", // 问题类型：填空题
+            question: "The capital of Italy is ___", // 问题内容
+            score: 5, // 问题分值
+            answer: "Rome" // 正确答案
+        },
+        {
+            type: "shortAnswer", // 问题类型：简答题
+            question: "Name one of the Great Lakes in the United States.", // 问题内容
+            score: 7, // 问题分值
+            answer: "" // 正确答案
+        }
+        
+    ]
+};

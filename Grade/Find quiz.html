@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Enter Quiz Number</title>
+</head>
+<body>
+    <h1>Enter Quiz Number to Grade</h1>
+    <input type="text" id="quizNumber" placeholder="Quiz Number">
+    <button onclick="findCompletedQuizzes()">Find Quizzes</button>
+
+    <script>
+        function findCompletedQuizzes() {
+            const quizNumber = document.getElementById('quizNumber').value;
+            if (!quizNumber) {
+                alert("Please enter a quiz number.");
+                return;
+            }
+            window.location.href = `gradeSubmissions.html?quizNumber=${quizNumber}`;
+        }
+    </script>
+</body>
+</html>

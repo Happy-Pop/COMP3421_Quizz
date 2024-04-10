@@ -29,6 +29,7 @@
                         <br>
                         <ul style="list-style-type: none;" id="loginbox">
                             <li>
+                                <form id="login_form">
                                     <div class="form-group">
                                         <label for="InputEmail1"></label>
                                         <input type="email" class="form-control" id="InputEmail1" aria-describedby="emailHelp" placeholder="Enter email" onkeyup="sign_up_check(this.value,'emailHelp')">
@@ -109,6 +110,7 @@
                     if(this.responseText==="Teacher"){
                         document.getElementById("Password_Help").innerHTML = "Email and Password is correct";
                         document.getElementById("Password_Help").style.color="#ff0000";
+
                         var form1 = document.createElement("form");
                         var user_email= document.createElement("input");
                         user_email.value=email;

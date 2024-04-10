@@ -21,15 +21,11 @@ $user_lastname=$row["user_lastname"];
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.122.0">
     <title>Sidebars · Bootstrap v5.3</title>
-
+    <link rel="stylesheet" href="style.css">
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sidebars/">
-
-    
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
-
-<link href="./assets/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="./personal_info.css" rel="stylesheet">
+    <link href="./assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./personal_info.css" rel="stylesheet">
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -205,7 +201,7 @@ $user_lastname=$row["user_lastname"];
 </svg>
 
 <main class="d-flex flex-nowrap">
-
+  <!-- sidebar -->
   <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px;left:0px;bottom:0px;top:0;position:fixed" >
     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
       <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
@@ -214,28 +210,28 @@ $user_lastname=$row["user_lastname"];
     <hr>
     <ul class="nav nav-pills flex-column mb-auto" id="sidebar">
       <li class="nav-item">
-        <button style="width:100%;text-align: left;" class="nav-link text-white active" aria-current="page" id="Home" onclick="sidebar_choose('Home')">
+        <button type="button" width:100%;text-align: left;" class="nav-link text-white active" aria-current="page" id="Home" onclick="sidebar_choose('Home')">
           <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"/></svg>
           Home
         </button>
       </li >
       <li>
-        <button style="width:100%;text-align: left;" class="nav-link text-white " id="Dashboard" onclick="sidebar_choose('Dashboard')">
+        <button type="button" style="width:100%;text-align: left;" class="nav-link text-white " id="Dashboard" onclick="sidebar_choose('Dashboard')">
           <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
           Dashboard
         </button>
       </li>
       <li>
-        <a href="#" class="nav-link text-white" id="New_Quiz" onclick="sidebar_choose('New_Quiz')">
+        <button type="button" class="nav-link text-white" id="New_Quiz" onclick="sidebar_choose('New_Quiz')">
           <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"/></svg>
           New Quiz
-        </a>
+        </button>
       </li>
       <li>
-        <a href="#" class="nav-link text-white" id="personal_info" onclick="sidebar_choose('personal_info')">
+        <button type="button" class="nav-link text-white" id="personal_info" onclick="sidebar_choose('personal_info')">
           <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
           Personal information
-        </a>
+        </button>
       </li>
       <li>
         <a href="#" class="nav-link text-white">
@@ -263,7 +259,7 @@ $user_lastname=$row["user_lastname"];
   <!-- homepage -->
   <div class="container px-4 py-5" style="display: block;position:absolute;margin-left:280px;" id="Home_block">
     <?php
-    echo "<h2 class='pb-2 border-bottom'>Hi! $user_firstname</h2>";
+    echo "<h2 class='pb-2 border-bottom' id='User_name_title'>Hi! $user_firstname</h2>";
     ?>
     <div class="row row-cols-1 row-cols-md-2 align-items-md-center g-5 py-5">
       <div class="col d-flex flex-column align-items-start gap-2">
@@ -319,12 +315,13 @@ $user_lastname=$row["user_lastname"];
     </div>
   </div> 
   <!-- personal Info  -->
-  <div class="row g-5" style="display: none; position:absolute;margin-left:280px;" id="personal_info_block">
+  <div class="row g-5" style="display: none; position:absolute;margin-left:280px; top:30px" id="personal_info_block">
       <div class="col-md-7 col-lg-8">
-        <h4 class="mb-3">Billing address</h4>
+        <h3 class="mb-3">Personal information</h3>
         <form class="needs-validation" novalidate>
           <div class="row g-3">
             <div class="col-sm-6">
+
               <label for="firstName" class="form-label">First name</label>
               <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
               <div class="invalid-feedback">
@@ -343,7 +340,7 @@ $user_lastname=$row["user_lastname"];
             <div class="col-12">
               <label for="username" class="form-label">Username</label>
               <div class="input-group has-validation">
-                <span class="input-group-text">@</span>
+                <span class="input-group-text">#</span>
                 <input type="text" class="form-control" id="username" placeholder="Username" required>
               <div class="invalid-feedback">
                   Your username is required.
@@ -352,8 +349,10 @@ $user_lastname=$row["user_lastname"];
             </div>
 
             <div class="col-12">
-              <label for="email" class="form-label">Email <span class="text-body-secondary">(Optional)</span></label>
-              <input type="email" class="form-control" id="email" placeholder="you@example.com">
+              <label for="email" class="form-label">Email</label>
+              <?php
+              echo '<input type="email" class="form-control" id="email_fixed" placeholder='.$user_email.'  disabled>'
+              ?>
               <div class="invalid-feedback">
                 Please enter a valid email address for shipping updates.
               </div>
@@ -405,93 +404,80 @@ $user_lastname=$row["user_lastname"];
 
           <hr class="my-4">
 
-          <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="same-address">
-            <label class="form-check-label" for="same-address">Shipping address is the same as my billing address</label>
-          </div>
-
-          <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="save-info">
-            <label class="form-check-label" for="save-info">Save this information for next time</label>
-          </div>
-
           <hr class="my-4">
 
-          <h4 class="mb-3">Payment</h4>
-
-          <div class="my-3">
-            <div class="form-check">
-              <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked required>
-              <label class="form-check-label" for="credit">Credit card</label>
-            </div>
-            <div class="form-check">
-              <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required>
-              <label class="form-check-label" for="debit">Debit card</label>
-            </div>
-            <div class="form-check">
-              <input id="paypal" name="paymentMethod" type="radio" class="form-check-input" required>
-              <label class="form-check-label" for="paypal">PayPal</label>
-            </div>
-          </div>
-
-          <div class="row gy-3">
-            <div class="col-md-6">
-              <label for="cc-name" class="form-label">Name on card</label>
-              <input type="text" class="form-control" id="cc-name" placeholder="" required>
-              <small class="text-body-secondary">Full name as displayed on card</small>
-              <div class="invalid-feedback">
-                Name on card is required
-              </div>
-            </div>
-
-            <div class="col-md-6">
-              <label for="cc-number" class="form-label">Credit card number</label>
-              <input type="text" class="form-control" id="cc-number" placeholder="" required>
-              <div class="invalid-feedback">
-                Credit card number is required
-              </div>
-            </div>
-
-            <div class="col-md-3">
-              <label for="cc-expiration" class="form-label">Expiration</label>
-              <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
-              <div class="invalid-feedback">
-                Expiration date required
-              </div>
-            </div>
-
-            <div class="col-md-3">
-              <label for="cc-cvv" class="form-label">CVV</label>
-              <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
-              <div class="invalid-feedback">
-                Security code required
-              </div>
-            </div>
-          </div>
-
-          <hr class="my-4">
-
-          <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
+          <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to Save</button>
         </form>
       </div>
     </div>
+  <!-- new quiz -->
+  <div style="display: none; position:absolute;margin-left:280px; top:30px;" id="New_Quiz_block">
+    <div id="addQuizContainer" class="formContainer" style="display: block; width:700px;">
+    <div id="addQuiz">
+      <h2>Add New Quiz</h2>
+      <div style="display: none;" > <p id="author_of_quiz"><?php echo $user_email;?></p></div>
+      <form id="addQuizForm">
+          <label for="addQuizTitle">Title:</label>
+          <input contenteditable="true"; type="text" id="addQuizTitle" name="quizTitle" required>
+          <p>Total Score: <span id="totalScore">0</span></p>
+          <button onclick="toggleContent('')" class="button_add_quiz">Back</button>
+          <br>
+          <div id="questionTypeSelection">
+              <label for="questionType">Select Question Type:</label>
+              <select id="questionType" name="questionType" onchange="toggleOptionCount(this.value)">
+                  <option value="fillInTheBlanks">Fill in the Blanks</option>
+                  <option value="shortAnswer">Short Answer</option>
+                  <option value="mcq">Multiple Choice</option>
+              </select>
+              
+              <label for="optionCount" id="optionCountLabel" style="display:none;">Number of Options:</label>
+              <input type="number" id="optionCount" name="optionCount" min="2" max="5" style="display:none;">
+          </div>
+          <br>
+          <button type="button" onclick="prepareQuestion()" class="button_add_quiz">Add Question</button>
+          
+          <div id="questionsContainer">
+              
+          </div>
+
+          <button class="button_add_quiz" type="submit" value="Save New Quiz" style="margin-top: 10px;">
+          Save New Quiz</button>
+      </form>
+  </div>
+  
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 </main>
 <script src="./assets/dist/js/bootstrap.bundle.min.js"></script>
 <script src="./checkout.js"></script>
 <script src="./sidebars.js"></script>
+<script src="script.js"></script>
 <script>
-function sidebar_choose(section) {
-  document.getElementById("Home").classList.remove("active");
-  document.getElementById("Dashboard").classList.remove("active");
-  document.getElementById("New_Quiz").classList.remove("active");
-  document.getElementById("personal_info").classList.remove("active");
-  document.getElementById(section).classList.add("active");
+  function sidebar_choose(section) {
+    document.getElementById("Home").classList.remove("active");
+    document.getElementById("Dashboard").classList.remove("active");
+    document.getElementById("New_Quiz").classList.remove("active");
+    document.getElementById("personal_info").classList.remove("active");
+    document.getElementById(section).classList.add("active");
   
-  document.getElementById("Home"+"_block").style.display="none";
-  document.getElementById("personal_info"+"_block").style.display="none";
-  document.getElementById(section+"_block").style.display="block";
-
-}
+    document.getElementById("Home"+"_block").style.display="none";
+    document.getElementById("personal_info"+"_block").style.display="none";
+    document.getElementById("New_Quiz"+"_block").style.display="none";
+    document.getElementById(section+"_block").style.display="block";
+  }
 </script>
   </body>
     

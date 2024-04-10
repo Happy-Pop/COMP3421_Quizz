@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz Created</title>
+</head>
+<body>
+    <h1>Quiz Successfully Created!</h1>
+    <p>Your unique quiz number is: <span id="quizNumberDisplay"></span></p>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+
+        function getCookie(name) {
+            let cookieArr = document.cookie.split(";");
+            for(let i = 0; i < cookieArr.length; i++) {
+                let cookiePair = cookieArr[i].split("=");
+                if(name == cookiePair[0].trim()) {
+                    return decodeURIComponent(cookiePair[1]);
+                }
+            }
+            return null;
+        }
+
+        const quizNumber = getCookie("quizNumber");
+        document.getElementById('quizNumberDisplay').textContent = quizNumber;
+    </script>
+</body>
+</html>

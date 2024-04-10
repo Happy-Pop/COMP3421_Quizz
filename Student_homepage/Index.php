@@ -117,17 +117,65 @@ $user_lastname=$row["user_lastname"];
         height: 100%;
         overflow: auto;
         background-color: rgba(0,0,0,0.4);
-    }
+      }
 
-    .modal-content {
-        background-color: #fefefe;
-        margin: 15% auto;
-        padding: 20px;
-        border: 1px solid #888;
-        width: 80%;
-        max-width: 300px;
-        text-align: center;
-    }
+      .modal-content {
+          background-color: #fefefe;
+          margin: 15% auto;
+          padding: 20px;
+          border: 1px solid #888;
+          width: 80%;
+          max-width: 300px;
+          text-align: center;
+      }
+      .modal_grade {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            padding-top: 60px;
+        }
+
+        /* Modal Content/Box */
+        .modal_grade-content {
+          background-color: #fefefe;
+          margin: 5% auto; /* 15% from the top and centered */
+          padding: 20px;
+          border: 1px solid #888;
+          width: 80%; /* Could be more or less, depending on screen size */
+          overflow-y: auto; /* Enable vertical scroll if needed */
+          border-radius: 10px; /* 设置圆角效果 */
+        }
+
+        /* The Close Button */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        th, td {
+            text-align: center; /* 设置文本居中 */
+            padding: 8px 16px; /* 增大单元格内部的上下左右间距 */
+        }
+        thead th {
+            background-color: #aaa; /* 为表头添加背景色，可根据喜好调整 */
+            ; 
+        }
+    
     </style>
 
     
@@ -279,6 +327,25 @@ $user_lastname=$row["user_lastname"];
         <button id="confirmSignOut" style="margin-top: 10px; padding: 10px; width: 100%;">Yes, just sign me out.</button>
         <button id="cancelSignOut" style="margin-top: 10px; padding: 10px; width: 100%;">No, bring me back.</button>
     </div>
+  </div>
+  <div id="gradesModal" class="modal_grade">
+
+    <div class="modal_grade-content">
+      <span class="close">&times;</span>
+      <table id="gradesTable" style="width: 100%; border-collapse: separate; border-spacing: 0 10px;">
+          <thead>
+              <tr>
+                  <th>Name</th>
+                  <th>Time</th>
+                  <th>Grade</th>
+              </tr>
+          </thead>
+          <tbody>
+              <!-- Data rows will be inserted here -->
+          </tbody>
+      </table>
+    </div>
+  
   </div>
   <div class="b-example-divider b-example-vr" style="position:fixed"></div>
   <!-- homepage -->

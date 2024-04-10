@@ -123,6 +123,22 @@
                         form1.submit();
                         document.body.removeChild(form1);
                     }
+                    if(this.responseText==="Student"){
+                        document.getElementById("Password_Help").innerHTML = "Email and Password is correct";
+                        document.getElementById("Password_Help").style.color="#ff0000";
+
+                        var form1 = document.createElement("form");
+                        var user_email= document.createElement("input");
+                        user_email.value=email;
+                        user_email.type="email";
+                        user_email.name="user_email";
+                        form1.method = "POST";
+                        form1.action = "./Student_homepage/index.php";
+                        form1.appendChild(user_email);
+                        document.body.appendChild(form1);
+                        form1.submit();
+                        document.body.removeChild(form1);
+                    }
                 }
                 return false;
             };

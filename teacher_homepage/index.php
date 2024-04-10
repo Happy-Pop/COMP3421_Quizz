@@ -381,7 +381,6 @@ $user_lastname=$row["user_lastname"];
                 Please select a valid country.
               </div>
             </div>
-
             <div class="col-md-4">
               <label for="state" class="form-label">State</label>
               <select class="form-select" id="state" required>

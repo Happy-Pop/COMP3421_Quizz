@@ -10,4 +10,4 @@ $result = mysqli_query($conn, $sql);
 if($result==true){
     echo "Successful";
 }
-?>
+mysqli_close($conn);

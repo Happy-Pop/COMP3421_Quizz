@@ -182,8 +182,9 @@ document.getElementById('addQuizForm').addEventListener('submit', function(e) {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            document.cookie = `quizNumber=${quizNumber}; path=/`;
-            window.location.href = `quizSuccess.html`;
+            document.cookie = `quizNumber=${quizNumber}; 
+            path=/`;
+            window.location.href = `#homepage`;
         } else {
             alert('Failed to create quiz.');
         }

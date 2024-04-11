@@ -2,7 +2,7 @@ body, html {
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  background-color: #e9eff1; 
+  background-color: #292929; /* 灰黑色背景 */
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
   color: #333;
   font-size: 16px; 
@@ -13,34 +13,35 @@ main {
   padding-top: 2rem;
 }
 
-#quizContainer, #questionsContainer{
+#quizContainer, #questionsContainer {
   width: 80%;
   max-width: 800px;
   margin: 20px auto;
   padding: 20px;
   background-color: white;
-  border-radius: 8px;
+  border-radius: 20px; 
+
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 #start, #conclu {
   width: 80%;
-
   margin: 20px auto;
   padding: 20px;
+  border-radius: 20px; 
   background-color: white;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
 }
 
-#quizTitle,.question h3{
-  background-color: #0056b3;
+#quizTitle, .question h3 {
+  background-color: #0056b3; /* 蓝色标题背景 */
   color: white;
   padding: 15px;
-  border-radius: 8px; 
+  border-radius: 20px 20px 0 0;
   margin: -20px -20px 20px -20px; 
 }
 
-#totalGrade{
+#totalGrade {
   margin-left: 5%;
   margin-bottom: 2%;
   font-size: 20px;
@@ -71,10 +72,7 @@ input[type="number"], textarea#comment {
   border-radius: 4px;
 }
 
-#comment{
-  max-height: 200px;
-  margin: 20px;
-}
+
 
 button {
   padding: 10px 20px;
@@ -103,4 +101,33 @@ button:hover {
   #quizContainer, #questionsContainer, #conclu {
       width: 90%; 
   }
+}
+
+#commentContainer {
+  border: 1px solid #ccc; 
+  border-radius: 8px; 
+  padding: 10px;
+  margin-top: 20px; 
+}
+
+#commentTitle {
+  font-weight: bold; 
+  width: calc(100% - 40px);
+  margin: 0; 
+  padding: 8px; 
+  background-color: #333; 
+  color: white; 
+  border-top-left-radius: 8px; 
+  border-top-right-radius: 8px; 
+}
+
+textarea#comment {
+  width: calc(100% - 40px); 
+  height: 120px;
+  margin: 0 auto; 
+  padding: 10px; 
+  border: 1px solid #ccc; 
+  border-radius: 0; 
+  border-top-left-radius: 0; 
+  border-top-right-radius: 0; 
 }

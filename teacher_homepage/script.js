@@ -168,6 +168,7 @@ document.getElementById('addQuizForm').addEventListener('submit', function(e) {
     const quizData = {
       author: email,
       title: quizTitle,
+      Quiz_created_time:created_time,
       created_time: created_time2,
       save_location: where_to_save,
       totalScore: totalscore,
@@ -256,3 +257,4 @@ function addScoreInput(questionContent) {
             </div>
     `;
 }
+

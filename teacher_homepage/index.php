@@ -5,11 +5,12 @@ $conn = mysqli_connect("localhost", "root", "", "quiz_info");
 if (!$conn) {
   die("Connect Error: " . mysqli_connect_error());
 }
-$sql = "SELECT user_firstname,user_lastname from user_info where user_email = '$user_email'";
+$sql = "SELECT user_firstname,user_lastname,Num_quiz from user_info where user_email = '$user_email'";
 $result = mysqli_query($conn, $sql);
 $row=$result->fetch_assoc();
 $user_firstname=$row["user_firstname"];
 $user_lastname=$row["user_lastname"];
+$Num_quiz=$row["Num_quiz"];
 ?>
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
@@ -256,6 +257,7 @@ $user_lastname=$row["user_lastname"];
     </div>
   </div>
   <div class="b-example-divider b-example-vr" style="position:fixed"></div>
+
   <!-- homepage -->
   <div class="container px-4 py-5" style="display: block;position:absolute;margin-left:280px;" id="Home_block">
     <?php
@@ -313,7 +315,53 @@ $user_lastname=$row["user_lastname"];
         </div>
       </div>
     </div>
+  </div>
+
+  <!-- dashboard -->
+  <div  class="container px-4 py-5" style="top:30px;display: none;position:absolute;margin-left:280px;" id="Dashboard_block" >
+    <div class="album py-5 bg-body-tertiary">
+    <div class="container" >
+      
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" style="right:40px;width:80%;">
+      <?php
+          $conn = mysqli_connect("localhost", "root", "", "quiz_info");
+          if (!$conn) {
+            die("Connect Error: " . mysqli_connect_error());
+          }
+          $sql = "SELECT 	Quiz_created_time,Quiz_title, Quizid, Quiz_save_folder, Quiz_Password from quizs_info where 	Quiz_Author = '$user_email'";
+          $result = mysqli_query($conn, $sql);
+          if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+              $Quizid=$row["Quizid"]; 
+              $Quiz_title=$row["Quiz_title"];
+              $Quiz_save_folder=$row["Quiz_save_folder"];
+              $Quiz_Password=$row["Quiz_Password"];
+              $Quiz_created_time=$row["Quiz_created_time"];           
+              echo '<div class="col">';
+              echo '<div class="card shadow-sm">';
+              echo '<svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/> <text x="50%" y="50%" fill="#eceeef" dy=".3em">'.$Quiz_title.'</text> </svg>';
+              echo '<div class="card-body">';
+              echo '<p class="card-text">Quizid: '.$Quizid.'<br>Quiz_title: '.$Quiz_title.'<br>Author: '.$user_firstname.' '.$user_lastname.'</p>';
+              echo '<div class="d-flex justify-content-between align-items-center">';
+              echo '<div class="btn-group">';
+              echo '<button type="button" class="btn btn-sm btn-outline-secondary">View</button>';
+              echo '<button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>';
+              echo '</div>';
+              echo '<small class="text-body-secondary">'.$Quiz_created_time.'</small>';
+              echo '</div>';
+              echo '</div>';
+              echo '</div>';
+              echo '</div>';
+            }
+          }
+
+        
+      ?>
+      </div>
+    </div>
+    </div>
   </div> 
+
   <!-- personal Info  -->
   <div class="row g-5" style="display: none; position:absolute;margin-left:280px; top:30px" id="personal_info_block">
       <div class="col-md-7 col-lg-8">
@@ -409,6 +457,7 @@ $user_lastname=$row["user_lastname"];
         </form>
       </div>
     </div>
+
   <!-- new quiz -->
   <div style="display: none; position:absolute;margin-left:280px; top:30px;" id="New_Quiz_block">
     <div id="addQuizContainer" class="formContainer" style="display: block; width:700px;">
@@ -433,32 +482,20 @@ $user_lastname=$row["user_lastname"];
               <input type="number" id="optionCount" name="optionCount" min="2" max="5" style="display:none;">
           </div>
           <br>
-          <button type="button" onclick="prepareQuestion()" class="button_add_quiz">Add Question</button>
+          <button type="button" onclick="prepareQuestion()"  class="button_add_quiz">Add Question</button>
           
           <div id="questionsContainer">
               
           </div>
 
-          <button class="button_add_quiz" type="submit" value="Save New Quiz" style="margin-top: 10px;">
+          <button class="button_add_quiz" type="submit" onclick='javascript:location.reload()' value="Save New Quiz" style="margin-top: 10px;">
           Save New Quiz</button>
       </form>
   </div>
   
     </div>
   </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 </main>
 <script src="./assets/dist/js/bootstrap.bundle.min.js"></script>
 <script src="./checkout.js"></script>
@@ -475,7 +512,12 @@ $user_lastname=$row["user_lastname"];
     document.getElementById("Home"+"_block").style.display="none";
     document.getElementById("personal_info"+"_block").style.display="none";
     document.getElementById("New_Quiz"+"_block").style.display="none";
+    document.getElementById("Dashboard"+"_block").style.display="none";
     document.getElementById(section+"_block").style.display="block";
+  }
+  function show_quiz_list(){
+    
+    
   }
 </script>
   </body>

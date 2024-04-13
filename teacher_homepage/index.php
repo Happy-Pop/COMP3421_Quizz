@@ -235,10 +235,10 @@ $Num_quiz=$row["Num_quiz"];
         </button>
       </li>
       <li>
-        <a href="#" class="nav-link text-white">
+        <button type="button" class="nav-link text-white" id="Grade" onclick="sidebar_choose('Grade')">
           <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
-          Customers
-        </a>
+          Grade
+        </button>
       </li>
     </ul>
     <hr>
@@ -459,7 +459,7 @@ $Num_quiz=$row["Num_quiz"];
     </div>
 
   <!-- new quiz -->
-  <div style="display: none; position:absolute;margin-left:280px; top:30px;" id="New_Quiz_block">
+  <div style="display: none; position:absolute;margin-left:300px; top:30px;" id="New_Quiz_block">
     <div id="addQuizContainer" class="formContainer" style="display: block; width:700px;">
     <div id="addQuiz">
       <h2>Add New Quiz</h2>
@@ -495,7 +495,22 @@ $Num_quiz=$row["Num_quiz"];
   
     </div>
   </div>
-    
+  
+  <!-- Grade quiz -->
+  <div style="display: none; position:absolute;margin-left:230px; width:80%;top:30px;" id="Grade_block" >
+  <div class="container" style="background-color: #fff;
+            width:80%;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            color: black;
+            text-align: center;
+            margin-bottom: 30px;">
+        <h1>Enter Quiz Number to Grade</h1>
+        <input type="text" id="quizNumber" placeholder="Quiz Number">
+        <button onclick="findCompletedQuizzes()">Find Quizzes</button>
+    </div>
+  </div>
 </main>
 <script src="./assets/dist/js/bootstrap.bundle.min.js"></script>
 <script src="./checkout.js"></script>
@@ -507,18 +522,43 @@ $Num_quiz=$row["Num_quiz"];
     document.getElementById("Dashboard").classList.remove("active");
     document.getElementById("New_Quiz").classList.remove("active");
     document.getElementById("personal_info").classList.remove("active");
+    document.getElementById("Grade").classList.remove("active");
     document.getElementById(section).classList.add("active");
-  
+    
     document.getElementById("Home"+"_block").style.display="none";
     document.getElementById("personal_info"+"_block").style.display="none";
     document.getElementById("New_Quiz"+"_block").style.display="none";
     document.getElementById("Dashboard"+"_block").style.display="none";
+    document.getElementById("Grade"+"_block").style.display="none";
     document.getElementById(section+"_block").style.display="block";
   }
-  function show_quiz_list(){
-    
-    
-  }
+  function findCompletedQuizzes() {
+            var quizid = document.getElementById('quizNumber').value;
+            if (quizid!='') {
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function(){
+                    if (this.readyState == 4 && this.status == 200) {
+                        var quiz_folder=this.responseText;
+                        var form1 = document.createElement("form");
+                        var quiz_folder_value= document.createElement("input");
+                        quiz_folder_value.value=quiz_folder;
+                        quiz_folder_value.type="text";
+                        quiz_folder_value.name="quiz_folder";
+                        form1.method = "POST";
+                        form1.action = "./grade/Submissions.php";
+                        //alert(quiz_folder_value.value);
+                        form1.appendChild(quiz_folder_value);
+                        document.body.appendChild(form1);
+                        form1.submit();
+                        document.body.removeChild(form1);
+                    }
+                };
+                xmlhttp.open("GET", "./grade/get_quiz_folder.php?quiz_id=" +quizid, true);
+                xmlhttp.send();
+            } else {
+                alert('Please enter a quiz number.');
+            }
+        }
 </script>
   </body>
     

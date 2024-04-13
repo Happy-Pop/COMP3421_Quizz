@@ -57,27 +57,32 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Enter Quiz Number to Grade</h1>
-        <input type="text" id="quizNumber" placeholder="Quiz Number">
-        <button onclick="findCompletedQuizzes()">Find Quizzes</button>
-    </div>
+
 
     <script>
         function findCompletedQuizzes() {
-            const quizNumber = document.getElementById('quizNumber').value;
-            if (quizNumber) {
-                fetch(`http://localhost/COMP3421_Quizz/Grade/2024-04-12T16-42-38-880Z.json`)
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Quiz not found');
-                        }
-                        return response.json();
-                    })
-                    .then(data => {
-                        window.location.href = `Submissions.html?quizNumber=${quizNumber}`;
-                    })
-                    .catch(error => alert(error.message));
+            var quizid = document.getElementById('quizNumber').value;
+            if (quizid!='') {
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function(){
+                    if (this.readyState == 4 && this.status == 200) {
+                        var quiz_folder=this.responseText;
+                        var form1 = document.createElement("form");
+                        var quiz_folder_value= document.createElement("input");
+                        quiz_folder_value.value=quiz_folder;
+                        quiz_folder_value.type="text";
+                        quiz_folder_value.name="quiz_folder";
+                        form1.method = "POST";
+                        form1.action = ".garde/Submission.php";
+                        form1.appendChild(user_email);
+                        document.body.appendChild(form1);
+                        form1.submit();
+                        document.body.removeChild(form1);
+                    }
+                    return false;
+                };
+                xmlhttp.open("GET", "./grade/get_quiz_folder.php?quiz_id=" +quizid, true);
+                xmlhttp.send();
             } else {
                 alert('Please enter a quiz number.');
             }

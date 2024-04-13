@@ -1,0 +1,41 @@
+const data = [
+    {
+        quizTitle: "Sample Quiz", // 测验标题
+        studentId: "123456", // 学生ID
+        mcqtotal: 25, // 选择题总分
+        totalScore: 75, // 总分
+        comment: "Good job!", // 教师评语
+        answers: [
+            {
+                questionIndex: 1, // 问题索引
+                type: "mcq", // 问题类型
+                question: "What is the capital of France?", // 问题内容
+                score: 10, // 问题分值
+                options: ["London", "Paris", "Berlin", "Madrid"], // 选项列表
+                answer: "Paris", // 正确答案
+                studentAnswer: "Paris", // 学生答案
+                teacherScore: 10 // 教师评分
+            },
+            {
+                questionIndex: 2,
+                type: "fillInTheBlanks",
+                question: "The capital of Italy is ___",
+                score: 5,
+                answer: "Rome",
+                studentAnswer: "Rome",
+                teacherScore: 5
+            },
+            {
+                questionIndex: 3,
+                type: "shortAnswer",
+                question: "Name one of the Great Lakes in the United States.",
+                score: 7,
+                answer: "",
+                studentAnswer: "Lake Superior",
+                teacherScore: 7
+            }
+            // 可以继续添加更多问题的回答信息
+        ]
+    }
+    // 可以包含多个学生的测验数据
+];

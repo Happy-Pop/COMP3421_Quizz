@@ -1,0 +1,133 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-color: #292929; /* 灰黑色背景 */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+  color: #333;
+  font-size: 16px; 
+}
+
+main {
+  display: block;
+  padding-top: 2rem;
+}
+
+#quizContainer, #questionsContainer {
+  width: 80%;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 20px; 
+
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#start, #conclu {
+  width: 80%;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 20px; 
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+}
+
+#quizTitle, .question h3 {
+  background-color: #0056b3; /* 蓝色标题背景 */
+  color: white;
+  padding: 15px;
+  border-radius: 20px 20px 0 0;
+  margin: -20px -20px 20px -20px; 
+}
+
+#totalGrade {
+  margin-left: 5%;
+  margin-bottom: 2%;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.options label {
+  display: block;
+  padding: 10px;
+  margin: 5px 0;
+  background-color: #f7f7f7;
+  border: 1px solid #e7e7e7;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.options label:hover, .options input[type="radio"]:checked + label {
+  background-color: #e1f5fe;
+  border-color: #b3e5fc;
+}
+
+input[type="number"], textarea#comment {
+  width: 100%; 
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 4px;
+  color: white;
+  background-color: #007bff;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+button:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+#submitBtn, #backBtn {
+  background-color: #28a745; 
+}
+
+#submitBtn:hover, #backBtn:hover {
+  background-color: #218838; 
+}
+
+@media (max-width: 768px) {
+  #quizContainer, #questionsContainer, #conclu {
+      width: 90%; 
+  }
+}
+
+#commentContainer {
+  border: 1px solid #ccc; 
+  border-radius: 8px; 
+  padding: 10px;
+  margin-top: 20px; 
+}
+
+#commentTitle {
+  font-weight: bold; 
+  width: calc(100% - 40px);
+  margin: 0; 
+  padding: 8px; 
+  background-color: #333; 
+  color: white; 
+  border-top-left-radius: 8px; 
+  border-top-right-radius: 8px; 
+}
+
+textarea#comment {
+  width: calc(100% - 40px); 
+  height: 120px;
+  margin: 0 auto; 
+  padding: 10px; 
+  border: 1px solid #ccc; 
+  border-radius: 0; 
+  border-top-left-radius: 0; 
+  border-top-right-radius: 0; 
+}

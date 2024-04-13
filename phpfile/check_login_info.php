@@ -1,5 +1,5 @@
 <?php
-$email = $_REQUEST["email"];
+$quiz_folder = $_REQUEST["quiz_folder"];
 $password = $_REQUEST["password"];
 $conn = mysqli_connect("localhost", "root", "", "quiz_info");
 if (!$conn) {

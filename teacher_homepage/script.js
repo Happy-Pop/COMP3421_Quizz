@@ -165,6 +165,13 @@ document.getElementById('addQuizForm').addEventListener('submit', function(e) {
     var created_time = new Date();
     var created_time2 = created_time.toISOString().replace(/:/g, '-').replace('.', '-');
     var where_to_save = "./Quiz_save_folder/" + email + "/" + created_time2 + ".json";
+    let submissions = {
+        "submission_id": "",
+        "studentId": "",
+        "answers": [],
+        "teacherScore": [], 
+        "totalScore": "" 
+    };
     const quizData = {
       author: email,
       title: quizTitle,
@@ -172,7 +179,8 @@ document.getElementById('addQuizForm').addEventListener('submit', function(e) {
       created_time: created_time2,
       save_location: where_to_save,
       totalScore: totalscore,
-      question: questions
+      question: questions,
+      submissions: submissions,
     };
     
     fetch('./saveQuiz.php', {

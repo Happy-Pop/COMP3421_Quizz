@@ -508,7 +508,7 @@ $Num_quiz=$row["Num_quiz"];
             margin-bottom: 30px;">
         <h1>Enter Quiz Number to Grade</h1>
         <input type="text" id="quizNumber" placeholder="Quiz Number">
-        <button onclick="findCompletedQuizzes()">Find Quizzes</button>
+        <button onclick="findCompletedQuizzes()" >Find Quizzes</button>
     </div>
   </div>
 </main>
@@ -545,8 +545,8 @@ $Num_quiz=$row["Num_quiz"];
                         quiz_folder_value.type="text";
                         quiz_folder_value.name="quiz_folder";
                         form1.method = "POST";
+                        form1.target="_blank"
                         form1.action = "./grade/Submissions.php";
-                        //alert(quiz_folder_value.value);
                         form1.appendChild(quiz_folder_value);
                         document.body.appendChild(form1);
                         form1.submit();

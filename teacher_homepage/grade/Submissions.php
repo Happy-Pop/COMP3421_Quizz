@@ -84,9 +84,9 @@ $quiz_json_data=json_decode($data,true);
             echo "<h2>Submissions</h2>";
             echo '<p>Number of Submissions:'.count($quiz_json_data['submissions']).'</p>';
             echo '<div class="questions">';
-            for($i=0;$i<count($quiz_json_data['question']); $i++){             
-                echo  'studentId:'.$i+1 .' '.$quiz_json_data['submissions'][0]['studentId'].'<a onclick="go_to_student_answer('.$quiz_json_data['submissions'][0]['studentId'].')"> view</a>';
-                
+            for($i=0;$i<count($quiz_json_data['submissions']); $i++){             
+                echo  'studentId:'.$i+1 .' '.$quiz_json_data['submissions'][$i]['studentId'].' '.'<button onclick="go_to_student_answer('.$quiz_json_data['submissions'][0]['studentId'].','.$i .')"> view</button>';
+                echo "<br>";
             }
             echo '</div>';
             ?>
@@ -94,28 +94,37 @@ $quiz_json_data=json_decode($data,true);
     </div>
 
     <script>
-        function go_to_student_answer(studentId){
+        function go_to_student_answer(studentId,submit_id){
+
             var form1 = document.createElement("form");
             var user_email= document.createElement("input");
             user_email.value=studentId;
             form1.target="_blank"
             user_email.type="text";
             user_email.name="studentId";
+            
+            var quiz_folder= document.createElement("input");
+            quiz_folder.value='<?php echo $quiz_folder;?>';
+            quiz_folder.type="text";
+            quiz_folder.name="quiz_folder";
+
+            var submit_id_1= document.createElement("input");
+            submit_id_1.value=submit_id;
+            submit_id_1.type="text";
+            submit_id_1.name="submit_id";
+
             form1.method = "POST";
             form1.action = "./Grading_detail_page.php";
+            
             form1.appendChild(user_email);
+            form1.appendChild(quiz_folder);
+            form1.appendChild(submit_id_1);
+
             document.body.appendChild(form1);
             form1.submit();
             document.body.removeChild(form1);
+            
         }
-function displaySubmissions(submissions) {
-    const submissionsListDiv = document.getElementById('submissionsList');
-    submissionsListDiv.innerHTML = `<h2>Submissions</h2>
-                                    Number of Submissions: ${submissions.length}</p>
-                                ${submissions.map(sub => `<div>Student ID: ${sub.studentId}
-                                    <a href="Grading%20detail%20page.html?quizNumber=${quizNumber}&studentId=${sub.studentId}">View</a>
-                                    </div>`).join('')}`;
-}
     </script>
 </body>
 </html>

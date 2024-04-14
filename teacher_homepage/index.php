@@ -244,11 +244,11 @@ $Num_quiz=$row["Num_quiz"];
     <hr>
     <div class="dropdown">
       <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-        <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+        <img src="./media/images/login_background2.png" alt="" width="32" height="32" class="rounded-circle me-2">
         <strong>mdo</strong>
       </a>
       <ul class="dropdown-menu dropdown-menu-dark text-small shadow" >
-        <li><a class="dropdown-item" href="#">New project...</a></li>
+        <li><a class="dropdown-item" onclick="sidebar_choose('New_Quiz')">New Quiz...</a></li>
         <li><a class="dropdown-item" href="#">Settings</a></li>
         <li><a class="dropdown-item" href="#">Profile</a></li>
         <li><hr class="dropdown-divider"></li>
@@ -263,24 +263,25 @@ $Num_quiz=$row["Num_quiz"];
     <?php
     echo "<h2 class='pb-2 border-bottom' id='User_name_title'>Hi! $user_firstname</h2>";
     ?>
-    <div class="row row-cols-1 row-cols-md-2 align-items-md-center g-5 py-5">
+    <div class="row row-cols-1 row-cols-md-2 align-items-md-center g-5 py-5" style="width: 90%;">
       <div class="col d-flex flex-column align-items-start gap-2">
         <h2 class="fw-bold text-body-emphasis">Welcome to use Quiz <br> A useful tool for learning</h2>
         <p class="text-body-secondary">Welcome to our online question-solving platform! Our platform allows users to create and solve their own custom questions, 
           providing an interactive and engaging learning experience.</p>
-        <a href="#" class="btn btn-primary btn-lg">Create new Quiz for your students now!</a>
+        <a href="#" class="btn btn-primary btn-lg" onclick="sidebar_choose('New_Quiz')">Create new Quiz for your students now!</a>
       </div>
 
       <div class="col">
         <div class="row row-cols-1 row-cols-sm-2 g-4">
+
           <div class="col d-flex flex-column gap-2">
             <div class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
               <svg class="bi" width="1em" height="1em">
                 <use xlink:href="#collection" />
               </svg>
             </div>
-            <h4 class="fw-semibold mb-0 text-body-emphasis">Featured title</h4>
-            <p class="text-body-secondary">Paragraph of text beneath the heading to explain the heading.</p>
+            <h4 class="fw-semibold mb-0 text-body-emphasis">Convenience for Teachers</h4>
+            <p class="text-body-secondary">Quizziz provides teachers with a powerful and flexible quiz design tool. </p>
           </div>
 
           <div class="col d-flex flex-column gap-2">
@@ -289,8 +290,8 @@ $Num_quiz=$row["Num_quiz"];
                 <use xlink:href="#gear-fill" />
               </svg>
             </div>
-            <h4 class="fw-semibold mb-0 text-body-emphasis">Featured title</h4>
-            <p class="text-body-secondary">Paragraph of text beneath the heading to explain the heading.</p>
+            <h4 class="fw-semibold mb-0 text-body-emphasis">User friendly</h4>
+            <p class="text-body-secondary">This process is straightforward and ensures barrier-free access to exam materials.</p>
           </div>
 
           <div class="col d-flex flex-column gap-2">
@@ -299,18 +300,18 @@ $Num_quiz=$row["Num_quiz"];
                 <use xlink:href="#speedometer" />
               </svg>
             </div>
-            <h4 class="fw-semibold mb-0 text-body-emphasis">Featured title</h4>
-            <p class="text-body-secondary">Paragraph of text beneath the heading to explain the heading.</p>
+            <h4 class="fw-semibold mb-0 text-body-emphasis">A wonderful tool</h4>
+            <p class="text-body-secondary">On the platform, students can directly answer the questions online and submit their quizzes in a secure and user-friendly environment.</p>
           </div>
 
           <div class="col d-flex flex-column gap-2">
             <div class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
               <svg class="bi" width="1em" height="1em">
-                <use xlink:href="#table" />
+                <use xlink:href="#tabl131e" />
               </svg>
             </div>
-            <h4 class="fw-semibold mb-0 text-body-emphasis">Featured title</h4>
-            <p class="text-body-secondary">Paragraph of text beneath the heading to explain the heading.</p>
+            <h4 class="fw-semibold mb-0 text-body-emphasis">Benefits for Students</h4>
+            <p class="text-body-secondary">After logging in to Quizziz, students can use the identifier provided by their teacher to locate the quiz. </p>
           </div>
         </div>
       </div>
@@ -369,9 +370,8 @@ $Num_quiz=$row["Num_quiz"];
         <form class="needs-validation" novalidate>
           <div class="row g-3">
             <div class="col-sm-6">
-
               <label for="firstName" class="form-label">First name</label>
-              <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+              <input type="text" class="form-control" id="firstName" placeholder="" value="<?php echo $user_firstname; ?>" required>
               <div class="invalid-feedback">
                 Valid first name is required.
               </div>
@@ -379,7 +379,7 @@ $Num_quiz=$row["Num_quiz"];
 
             <div class="col-sm-6">
               <label for="lastName" class="form-label">Last name</label>
-              <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+              <input type="text" class="form-control" id="lastName" placeholder="" value="<?php echo $user_lastname; ?>" required>
               <div class="invalid-feedback">
                 Valid last name is required.
               </div>

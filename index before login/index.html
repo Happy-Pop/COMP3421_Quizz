@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Quizziz-A Cute Online Exam Platform</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+        
+        
+        <!-- Bootstrap CSS v5.2.1 -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous"
+        />
+    </head>
+
+    <body>
+        <header>
+            <!-- place navbar here -->
+            <div class="container">
+                <header class="fixed-top bg-white d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+                  <div class="col-md-3 mb-2 mb-md-0">
+                    <a href="./index.html" class="d-inline-flex link-body-emphasis text-decoration-none">
+                        <img src="./img/logo.png" alt="Logo" width="180">
+                    </a>
+                  </div>
+            
+                  <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                    <li><a href="./index.html" class="nav-link px-2 link-secondary">Home</a></li>
+                    <li><a href="./FAQs.html" class="nav-link px-2">FAQs</a></li>
+                    <li><a href="./about.html" class="nav-link px-2">About</a></li>
+                  </ul>
+            
+                  <div class="col-md-3">
+                    <button type="button" class="btn btn-outline-primary me-2" onclick="window.location.href='../index.html'">Login</button>
+                    <button type="button" class="btn btn-primary" onclick="window.location.href='../index.html'">Sign-up</button>
+                  </div>
+                </header>
+              </div>
+        </header>
+        <main>
+            <style>
+                html, body {
+                    height: 100%;
+                    margin: 0;
+                    overflow: hidden; /* 防止默认滚动 */
+                }
+                section {
+                    height: 100vh; /* 视窗高度 */
+                    align-items: center;
+                    justify-content: center;
+                    position: relative;
+                    color: white;
+                }
+
+                section::before {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0, 0, 0, 0.5); /* 半透明的黑色 */
+                    z-index: 1;
+                }
+                #page1 {
+                    background-image: url('./img/student_icon.png');
+                    background-size: cover; /* 覆盖整个区域 */
+                    background-position: center; /* 居中显示 */
+                }
+
+                #page2 {
+                    background-image: url('./img/teacher_icon.png');
+                    background-size: cover;
+                    background-position: center;
+                }
+                #page3 {
+                    background-image: url('./img/kids in classroom.jpg');
+                    background-size: cover;
+                    background-position: center;
+                }
+                #page4 {
+                    background-image: url('./img/man_delivering_lecture.jpeg');
+                    background-size: cover;
+                    background-position: center;
+                }
+                .content {
+                    position: relative;
+                    z-index: 2; 
+                    text-align: center; 
+                    padding: 20px; 
+                }
+                
+                .Fxxkmargin{
+                    height: 100vh; /* 视窗高度 */
+                    align-items: center;
+                    justify-content: center;
+                    display: flex;
+                }
+                .btn {
+                    display: inline-block;
+                    padding: 5px 20px;
+                    margin: 10px; /* 上下左右都有10px的外边距 */
+                    background-color: blue; /* 蓝色背景 */
+                    color: white; /* 白色文字 */
+                    text-decoration: none; /* 去掉下划线 */
+                    border-radius: 5px; /* 轻微的圆角效果 */
+                    transition: background-color 0.3s; /* 过渡效果 */
+                }
+
+                .btn:hover {
+                    background-color: darkblue; /* 鼠标悬停时变为深蓝色 */
+                }
+
+                .button-container {
+                    text-align: center; /* 居中按钮 */
+                    position: relative;
+                    z-index: 2; /* 确保按钮在遮盖层上方 */
+                    margin-top: 0px; /* 调整按钮的垂直位置 */
+                }
+
+                
+            </style>
+            <div>
+                <section id="page1">
+                    <div class="Fxxkmargin">
+                        <div class="content" style="position: relative; vertical-align: middle;">
+                            <h1 style="font-size: 120px; font-weight: 800;">Quizziz</h1>
+                            <p>The Online Quiz Platform</p>
+                    </div>
+                        
+                        <div class="content">
+                            <p style="font-size: 15px; max-width: 600px; text-align:left;" >Quizziz 
+                                is an innovative online quiz website meticulously crafted by our team
+                                 to modernize the educational and learning processes. This platform
+                                  is designed specifically for educational institutions, teachers, 
+                                  and students, offering a comprehensive online solution for quiz 
+                                  creation, distribution, and assessment. At the heart of Quizziz is 
+                                  the simplification of the testing process, making the creation, 
+                                  dissemination, and evaluation of quizzes both efficient and 
+                                  intuitive.</p>
+                            <br>
+                            <div class="button-container">
+                                <a href="#page2" class="btn">I'm a Teacher</a>
+                                <a href="#page3" class="btn">I'm a Student</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                </section>
+            </div>
+            
+            <section id="page2">
+                <div class="Fxxkmargin">
+                    <div class="content" style="position: relative; vertical-align: middle;">
+                        <h1 style="font-size: 80px; font-weight: 400;">Convenience for Teachers</h1>
+                        <p style="max-width: 1200px; font-size: 20px;">
+                            Quizziz provides teachers with a powerful and flexible quiz design tool. Through its simple interface, teachers can easily create a variety of quiz types including multiple-choice, fill-in-the-blank, and short answer questions, allowing for customized quiz content based on teaching needs.
+                        </p>
+                        <p style="max-width: 1200px; font-size: 20px;">
+                            Once a quiz is designed, teachers can publish a unique quiz identifier for students. This process eliminates the need for complicated distribution steps; teachers simply share a code, and students can retrieve the corresponding quiz on the Quizziz platform.</p>
+                        </p>
+                            
+                    </div>
+                    
+                </div>
+            </section>
+            <section id="page3">
+                <div class="Fxxkmargin">
+                    <div class="content" style="position: relative; vertical-align: middle;">
+                        <h1 style="font-size: 80px; font-weight: 400;">Benefits for Students</h1>
+                        <p style="max-width: 1200px; font-size: 20px;">
+                            After logging in to Quizziz, students can use the identifier provided by their teacher to locate the quiz. This process is straightforward and ensures barrier-free access to exam materials. On the platform, students can directly answer the questions online and submit their quizzes in a secure and user-friendly environment.
+                        </p>
+                        <p style="max-width: 1200px; font-size: 20px;">
+                            After submission, the quiz answers are securely recorded and directly sent to the respective teachers. This means that teachers can access and grade the quizzes anytime, anywhere, greatly improving assessment efficiency.
+                        </p>
+                            
+                    </div>
+                    
+                </div>
+            </section>
+            <section id="page4">
+                <div class="Fxxkmargin">
+                    <div class="content" style="position: relative; vertical-align: middle;">
+                        <h1 style="font-size: 80px; font-weight: 400;">Assessment and Feedback</h1>
+                        <p style="max-width: 1200px; font-size: 20px;">
+                            Another significant feature of Quizziz is its assessment and feedback mechanism. Once quizzes are graded, the scores and feedback are uploaded to the system and displayed in the students' grade section. This provides students with immediate learning feedback, helping them understand their performance and guide their study and review process better.
+                        </p>
+                        <p style="max-width: 1200px; font-size: 20px;">
+                            Moreover, the Quizziz platform supports various data analysis functions, offering comprehensive learning analysis reports to teachers. These reports include not just the distribution of students' scores but also detailed question analyses, helping teachers understand students' learning situations and optimize teaching content and methods.
+                        </p>
+                            
+                    </div>
+                    
+                </div>
+            </section>
+            <!-- 根据需要添加更多section -->
+            
+        </main>
+        <footer>
+            <!-- place footer here -->
+            <div id="footer" class="container">
+                <footer class="py-3 my-4">
+                  <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                    <li class="nav-item"><a href="/index.html" class="nav-link px-2 text-body-secondary">Home</a></li>
+                    <li class="nav-item"><a href="/FAQs.html" class="nav-link px-2 text-body-secondary">FAQs</a></li>
+                    <li class="nav-item"><a href="/about.html" class="nav-link px-2 text-body-secondary">About</a></li>
+                  </ul>
+                  <p class="text-center text-body-secondary">© 2024 Company, Inc</p>
+                </footer>
+              </div>
+        </footer>
+        <!-- Bootstrap JavaScript Libraries -->
+        <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"
+        ></script>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+            crossorigin="anonymous"
+        ></script>
+        <script>
+            let currentSection = 0;
+            let isScrolling = false; // 防止连续滚动
+            let sections = document.querySelectorAll('section');
+        
+            window.addEventListener('wheel', (e) => {
+                if (isScrolling) return;
+                isScrolling = true;
+        
+                // 向下滚动
+                if (e.deltaY > 0) {
+                    if (currentSection < sections.length - 1) {
+                        currentSection++;
+                    }
+                } else { // 向上滚动
+                    if (currentSection > 0) {
+                        currentSection--;
+                    }
+                }
+        
+                // 平滑滚动到当前section
+                sections[currentSection].scrollIntoView({ behavior: 'smooth' });
+        
+                setTimeout(() => {
+                    isScrolling = false;
+                }, 1000); // 等待滚动完成
+            });
+        </script>
+    </body>
+</html>

@@ -289,7 +289,7 @@ $user_lastname=$row["user_lastname"];
         </button>
       </li >
       <li>
-        <a href="#" class="nav-link text-white" id="My_Quiz" onclick="sidebar_choose('My_Quiz')">
+        <a href="../Grade/Find quiz.html" class="nav-link text-white" id="My_Quiz">
           <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"/></svg>
           My Quiz
         </a>
@@ -357,7 +357,7 @@ $user_lastname=$row["user_lastname"];
         <h2 class="fw-bold text-body-emphasis">Welcome to use Quiz <br> A useful tool for learning</h2>
         <p class="text-body-secondary">Welcome to our online question-solving platform! Our platform allows users to create and solve their own custom questions, 
           providing an interactive and engaging learning experience.</p>
-        <a href="#" class="btn btn-primary btn-lg" id="My_Quiz" onclick="sidebar_choose('My_Quiz')">View all your quiz now!</a>
+        <a href="../Grade/Find quiz.html" class="btn btn-primary btn-lg" id="My_Quiz">View all your quiz now!</a>
       </div>
 
       <div class="col">

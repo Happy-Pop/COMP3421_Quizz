@@ -310,12 +310,11 @@ $user_lastname=$row["user_lastname"];
     <hr>
     <div class="dropdown">
       <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-        <img src="#" id="UserImg" alt="" width="32" height="32" class="rounded-circle me-2">
+        <img src="images.png" id="UserImg" alt="" width="32" height="32" class="rounded-circle me-2">
         <strong id="UserName"></strong>
       </a>
       <ul class="dropdown-menu dropdown-menu-dark text-small shadow" >
         <li id="Check_Grades"><a class="dropdown-item" href="#">View my grades</a></li>
-        <li id="Settings"><a class="dropdown-item" href="#">Settings</a></li>
         <li><hr class="dropdown-divider"></li>
         <li id="Sign_Out"><a class="dropdown-item" href="#">Sign out</a></li>
       </ul>
@@ -358,17 +357,16 @@ $user_lastname=$row["user_lastname"];
         <h2 class="fw-bold text-body-emphasis">Welcome to use Quiz <br> A useful tool for learning</h2>
         <p class="text-body-secondary">Welcome to our online question-solving platform! Our platform allows users to create and solve their own custom questions, 
           providing an interactive and engaging learning experience.</p>
-        <a href="#" class="btn btn-primary btn-lg" id="My_Quiz" onclick="sidebar_choose('My_Quiz')">Find your quiz now!</a>
+        <a href="#" class="btn btn-primary btn-lg" id="My_Quiz" onclick="sidebar_choose('My_Quiz')">View all your quiz now!</a>
       </div>
 
       <div class="col">
         <div class="row row-cols-1 row-cols-sm-2 g-4">
           <div class="col d-flex flex-column gap-2">
             <div class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
-                Quiz Number needed:
+                Find Your Quiz
             </div>
-            <input id="quizNum">
-            <button id="Search">Search</button>
+            <button ><a href="../Student answer page/quizFind.html">Search Now</a></button>
           </div>
         </div>
       </div>
